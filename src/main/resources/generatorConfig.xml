@@ -40,7 +40,7 @@
 		</javaModelGenerator>
 
 		<!--自动生成的*Mapper.xml文件存放路径 -->
-		<sqlMapGenerator targetPackage="com.maxseal.estore.mapper" targetProject="./src/main/resources">
+		<sqlMapGenerator targetPackage="mapper" targetProject="./src/main/resources">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 
