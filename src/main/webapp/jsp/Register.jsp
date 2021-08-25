@@ -36,7 +36,7 @@
                 <li>
                     <label>
                         <span><b>*</b>用户名：</span>
-                        <input type="text" name="name" required/>
+                        <input id="name" type="text" name="name" required/>
                     </label>
                 </li>
                 <li>
@@ -80,7 +80,6 @@
             </p>
             <input class="btn_submit" type="submit" value="立即注册"/>
         </form>
-
     </div>
 </div>
 </body>

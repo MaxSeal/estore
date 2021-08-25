@@ -14,7 +14,7 @@ $(function () {
                 } else if (result === "password is wrong"){
                     alert("密码错误");
                 } else if (result === "success"){
-                   location.href = "http://localhost:8080/estore/index.jsp";
+                   location.href = "http://localhost:8080/estore/IndexServlet";
                 }
             }, "text"
         );

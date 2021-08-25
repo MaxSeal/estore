@@ -193,4 +193,19 @@
       parent_id = #{parentId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+<!-- 自己写的  -->
+  <select id="selectAllParentCategory" resultMap="BaseResultMap">
+    select id, name, description, parent_id
+    from es_category
+    where parent_id = 0
+  </select>
+
+  <select id="selectAllChildCategory" resultMap="BaseResultMap" parameterType="int">
+    select id, name, description, parent_id
+    from es_category
+    where parent_id = #{parentId}
+  </select>
+
 </mapper>

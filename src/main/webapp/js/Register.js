@@ -1,4 +1,19 @@
 $(function () {
+    $("#name").on("blur", function(){
+        let name = $("#name").val();
+        $.post(
+            "/estore/RegisterServlet",
+            {name},
+            function (result) {
+                if (result === "false") {
+                    alert("用户名已存在");
+                }
+            },
+            "text"
+        );
+    });
+
+
     let form = $('form')[0];
     $(form).on('submit', function (event) {
         event.preventDefault(); // 阻止默认的提交表单行为

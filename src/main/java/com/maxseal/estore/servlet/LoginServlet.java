@@ -1,11 +1,8 @@
 package com.maxseal.estore.servlet;
 
 import com.maxseal.estore.bean.Customer;
-import com.maxseal.estore.dao.CustomerMapper;
-import com.maxseal.estore.service.LoginService;
-import com.maxseal.estore.service.impl.LoginServiceImpl;
-import com.maxseal.estore.utils.SqlSessionUtils;
-import org.apache.ibatis.session.SqlSession;
+import com.maxseal.estore.service.CustomerService;
+import com.maxseal.estore.service.impl.CustomerServiceImpl;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -15,7 +12,7 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "LoginServlet", value = "/LoginServlet")
 public class LoginServlet extends HttpServlet {
-    LoginService loginService = new LoginServiceImpl();
+    CustomerService customerService = new CustomerServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,7 +23,7 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
         String password = request.getParameter("password");
-        Customer customer = loginService.judgeCustomerName(name);
+        Customer customer = customerService.judgeCustomerName(name);
 
         HttpSession session = request.getSession();
         PrintWriter writer = response.getWriter();

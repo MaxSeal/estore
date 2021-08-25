@@ -1,11 +1,8 @@
 package com.maxseal.estore.servlet;
 
 import com.maxseal.estore.bean.Customer;
-import com.maxseal.estore.dao.CustomerMapper;
-import com.maxseal.estore.service.RegisterService;
-import com.maxseal.estore.service.impl.RegisterServiceImpl;
-import com.maxseal.estore.utils.SqlSessionUtils;
-import org.apache.ibatis.session.SqlSession;
+import com.maxseal.estore.service.CustomerService;
+import com.maxseal.estore.service.impl.CustomerServiceImpl;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -16,11 +13,12 @@ import java.io.PrintWriter;
 @WebServlet(name = "RegisterServlet", value = "/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
 
-    RegisterService registerService = new RegisterServiceImpl();
+    CustomerService customerService = new CustomerServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String path = "/jsp/Register.jsp";
+        request.getRequestDispatcher(path).forward(request, response);
     }
 
     @Override
@@ -33,9 +31,8 @@ public class RegisterServlet extends HttpServlet {
         String telephone = request.getParameter("telephone");
         String email = request.getParameter("email");
 
-        if (registerService.judgeCustomerName(name)) {
-            Customer customer = new Customer(name, password, zipCode, address, telephone, email);
-            registerService.register(customer);
+        Customer customer = new Customer(name, password, zipCode, address, telephone, email);
+        if (customerService.register(customer)) {
             writer.write("success");
         } else
             writer.write("false");

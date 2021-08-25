@@ -27,4 +27,7 @@ public interface BookMapper {
     int updateByPrimaryKeySelective(Book record);
 
     int updateByPrimaryKey(Book record);
+
+    // 自己写的
+    List<Book> selectAllBooks();
 }
