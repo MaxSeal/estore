@@ -3,7 +3,7 @@
             "interval" : 2000,  //间隔时间
             "animatetime" : 500,
             "tween" : "QuadEaseOut",
-            "width" : 560
+            "width" : 696
         }
         //得到元素
         var carousel = document.getElementById("carousel");
@@ -15,7 +15,7 @@
         var imageLis = imageUL.getElementsByTagName("li");
         var circlesLis = circles.getElementsByTagName("li");
 
-        //克隆前我们得到个数
+        //克隆前我们得到个数N0P
         var length = imageLis.length;
 
         //魔术的准备就是克隆第一张li，放到最后

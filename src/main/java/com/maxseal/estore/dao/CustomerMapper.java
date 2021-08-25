@@ -20,6 +20,8 @@ public interface CustomerMapper {
 
     Customer selectByPrimaryKey(Integer id);
 
+    Customer selectCustomerByName(String name);
+
     int updateByExampleSelective(@Param("record") Customer record, @Param("example") CustomerExample example);
 
     int updateByExample(@Param("record") Customer record, @Param("example") CustomerExample example);

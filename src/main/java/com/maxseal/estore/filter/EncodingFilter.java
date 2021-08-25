@@ -10,9 +10,9 @@ import java.io.IOException;
 
 @WebFilter(
         filterName = "EncodingFilter",
-        urlPatterns = {"*.html", "/*"},
+        urlPatterns = {"*.jsp"},
         initParams = {@WebInitParam(name = "encoding", value = "UTF-8")},
-        dispatcherTypes = {DispatcherType.FORWARD}
+        dispatcherTypes = {DispatcherType.FORWARD, DispatcherType.REQUEST}
 )
 public class EncodingFilter implements Filter {
 
@@ -39,6 +39,7 @@ public class EncodingFilter implements Filter {
         // 分别给请求和响应设置字符编码
         req.setCharacterEncoding(encoding);
         resp.setCharacterEncoding(encoding);
+        resp.setContentType("text/html;charset=UTF-8");
 
         filterChain.doFilter(req, resp);
     }

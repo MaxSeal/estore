@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.maxseal.estore.dao.CustomerMapper">
+
   <resultMap id="BaseResultMap" type="com.maxseal.estore.bean.Customer">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
@@ -10,6 +11,7 @@
     <result column="telephone" jdbcType="VARCHAR" property="telephone" />
     <result column="email" jdbcType="VARCHAR" property="email" />
   </resultMap>
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -39,6 +41,7 @@
       </foreach>
     </where>
   </sql>
+
   <sql id="Update_By_Example_Where_Clause">
     <where>
       <foreach collection="example.oredCriteria" item="criteria" separator="or">
@@ -68,9 +71,11 @@
       </foreach>
     </where>
   </sql>
+
   <sql id="Base_Column_List">
     id, name, password, zipCode, address, telephone, email
   </sql>
+
   <select id="selectByExample" parameterType="com.maxseal.estore.bean.CustomerExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -85,30 +90,35 @@
       order by ${orderByClause}
     </if>
   </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from es_customer
     where id = #{id,jdbcType=INTEGER}
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from es_customer
     where id = #{id,jdbcType=INTEGER}
   </delete>
+
   <delete id="deleteByExample" parameterType="com.maxseal.estore.bean.CustomerExample">
     delete from es_customer
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
+
   <insert id="insert" parameterType="com.maxseal.estore.bean.Customer">
-    insert into es_customer (id, name, password, 
+    insert into es_customer (name, password,
       zipCode, address, telephone, 
       email)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+    values (#{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
       #{zipcode,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR})
   </insert>
+
   <insert id="insertSelective" parameterType="com.maxseal.estore.bean.Customer">
     insert into es_customer
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -158,12 +168,15 @@
       </if>
     </trim>
   </insert>
+
   <select id="countByExample" parameterType="com.maxseal.estore.bean.CustomerExample" resultType="java.lang.Long">
     select count(*) from es_customer
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+
+
   <update id="updateByExampleSelective" parameterType="map">
     update es_customer
     <set>
@@ -193,6 +206,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+
+
   <update id="updateByExample" parameterType="map">
     update es_customer
     set id = #{record.id,jdbcType=INTEGER},
@@ -206,6 +221,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+
+
   <update id="updateByPrimaryKeySelective" parameterType="com.maxseal.estore.bean.Customer">
     update es_customer
     <set>
@@ -230,6 +247,8 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
   <update id="updateByPrimaryKey" parameterType="com.maxseal.estore.bean.Customer">
     update es_customer
     set name = #{name,jdbcType=VARCHAR},
@@ -240,4 +259,13 @@
       email = #{email,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+<!-- 自己写的 -->
+  <select id="selectCustomerByName" parameterType="string" resultMap="BaseResultMap">
+     select name, password, zipCode, address, telephone, email
+     from es_customer
+     where name = #{name}
+  </select>
+
+
 </mapper>

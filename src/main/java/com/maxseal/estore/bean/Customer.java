@@ -1,95 +1,38 @@
 package com.maxseal.estore.bean;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import java.io.Serializable;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class Customer implements Serializable {
     private Integer id;
 
-    private String name;
+    private String name;  // 用户名
 
-    private String password;
+    private String password;  // 密码
 
-    private String zipcode;
+    private String zipcode;  // 邮政编码
 
-    private String address;
+    private String address;  // 地址
 
-    private String telephone;
+    private String telephone;  // 联系电话
 
-    private String email;
+    private String email;  // 邮箱
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
-    }
-
-    public String getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode == null ? null : zipcode.trim();
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone == null ? null : telephone.trim();
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", password=").append(password);
-        sb.append(", zipcode=").append(zipcode);
-        sb.append(", address=").append(address);
-        sb.append(", telephone=").append(telephone);
-        sb.append(", email=").append(email);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+    public Customer(String name, String password, String zipcode, String address, String telephone, String email) {
+        this.name = name;
+        this.password = password;
+        this.zipcode = zipcode;
+        this.address = address;
+        this.telephone = telephone;
+        this.email = email;
     }
 }
