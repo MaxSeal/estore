@@ -8,9 +8,7 @@ import com.maxseal.estore.service.BookService;
 import com.maxseal.estore.utils.SqlSessionUtils;
 import org.apache.ibatis.session.SqlSession;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class BookServiceImpl implements BookService {
 
@@ -34,5 +32,44 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> bookDisplay() {
         return bookMapper.selectAllBooks();
+    }
+
+    @Override
+    public Book findBookById(int id) {
+        return bookMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public Category findCategoryById(int categoryId) {
+        return categoryMapper.selectByPrimaryKey(categoryId);
+    }
+
+    @Override
+    public Category findCategoryByBook(Book book) {
+        return categoryMapper.selectByPrimaryKey(book.getCategoryId());
+    }
+
+    @Override
+    public List<Book> findBooksByCategoryId(int categoryId) {
+        Category category = categoryMapper.selectByPrimaryKey(categoryId);
+        List<Book> bookList = new ArrayList<>();
+
+        if (category.getParentId() == 0){
+            List<Category> childCategory = categoryMapper.selectAllChildCategory(categoryId);
+            for (Category c: childCategory) {
+                bookList.addAll(bookMapper.selectAllBooksByCategoryId(c.getId()));
+            }
+            return bookList;
+        } else
+            return bookMapper.selectAllBooksByCategoryId(categoryId);
+    }
+
+    @Override
+    public Set<String> publishingHouseOfBooks(List<Book> books) {
+        Set<String> publishHouses = new HashSet<>();
+        for (Book book: books) {
+            publishHouses.add(book.getPublisher());
+        }
+        return publishHouses;
     }
 }

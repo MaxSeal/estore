@@ -290,4 +290,10 @@
     select id, name, price, author, publisher, pubDate, description, category_id, image
     from es_book
   </select>
+
+  <select id="selectAllBooksByCategoryId" resultMap="BaseResultMap" parameterType="int">
+    select id, name, price, author, publisher, pubDate, description, category_id, image
+    from es_book
+    where category_id = #{categoryId}
+  </select>
 </mapper>

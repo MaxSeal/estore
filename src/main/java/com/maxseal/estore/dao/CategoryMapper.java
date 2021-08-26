@@ -29,8 +29,6 @@ public interface CategoryMapper {
     int updateByPrimaryKey(Category record);
 
     // 自己写的
-
     List<Category> selectAllParentCategory();    // 查询出所有的大分类
-
     List<Category> selectAllChildCategory(int parentId);   // 查出所有的大分类下的小分类
 }

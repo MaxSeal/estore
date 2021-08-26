@@ -30,4 +30,5 @@ public interface BookMapper {
 
     // 自己写的
     List<Book> selectAllBooks();
+    List<Book> selectAllBooksByCategoryId(int categoryId);
 }
